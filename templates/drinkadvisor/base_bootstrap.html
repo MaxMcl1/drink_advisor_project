@@ -2,7 +2,6 @@
 
 {% load staticfiles %}
 
-
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -27,26 +26,21 @@
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <a class="navbar-brand" href="#">DrinkAdvisor</a>
+      <a class="navbar-brand" href="#">Top navbar</a>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'about' %}">About</a>
+            <a class="nav-link" href="#">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'drinks' %}">View Drinks</a>
-		  </li>
-			<li class="nav-item">
-				<a class="nav-link" href="{% url 'sugar_free' %}">View Sugar-free Drinks</a>
+            <a class="nav-link disabled" href="#">View Drinks</a>
           </li>
         </ul>
       </div>
     </nav>
-
-	{% block content_block %}{% endblock %}
 
     <!-- <div class="container">
       <div class="jumbotron">

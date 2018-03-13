@@ -10,3 +10,27 @@ def index(request):
 
     
     return response
+
+def about(request):
+    
+
+    response = render(request, 'drinkadvisor/about.html')
+
+    
+    return response
+
+def drinks(request):
+    
+
+    response = render(request, 'drinkadvisor/drinks.html')
+
+    
+    return response
+
+def sugar_free(request):
+    
+
+    response = render(request, 'drinkadvisor/sugar_free.html')
+
+    
+    return response
