@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from drinkadvisor.models import Category, Page, UserProfile
+from drinkadvisor.models import UserProfile
 
 
 
