@@ -9,5 +9,7 @@ urlpatterns = [
     url(r'^sugar_free/', views.sugar_free, name='sugar_free'),
     url(r'^register/$',views.register, name='register'),
     url(r'^login/$', views.user_login, name='login'),
+    url(r'^restricted/', views.restricted, name='restricted'),
+    url(r'^logout/$', views.user_logout, name='logout'),
     
 ]

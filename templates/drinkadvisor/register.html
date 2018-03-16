@@ -8,7 +8,7 @@
 {% block content_block %}
     <h1>Register for DrinkAdvisor</h1>
     {% if registered %}
-        Rango says: <strong>thank you for registering!</strong>
+        <strong> Thank You for registering with Drink Advisor</strong>
         <a href="{% url 'index' %}">Return to the homepage.</a><br />
     {% else %}
 	<form id="user_form" method="post" action="{% url 'register' %}"
