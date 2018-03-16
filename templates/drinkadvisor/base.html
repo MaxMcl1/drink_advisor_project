@@ -9,9 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="http://v4-alpha.getbootstrap.com/favicon.ico">
+    <link rel="shortcut icon" href="{% static 'images/myfavicon.ico' %}">
 
-    <title> DrinkAdvisor - {% block title %} Welcome! {% endblock %}</title>
+    <title> DrinkAdvisor - {% block title %} {% endblock %}</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/navbar-top/">
 
     <!-- Bootstrap core CSS -->
@@ -37,14 +37,27 @@
             <a class="nav-link" href="{% url 'about' %}">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'drinks' %}">View Drinks</a>
+            <a class="nav-link" href="{% url 'drinks' %}">Drinks</a>
 		  </li>
 	  <li class="nav-item">
             <a class="nav-link" href="{% url 'register' %}">Sign Up</a>
 		  </li>
 			<li class="nav-item">
-				<a class="nav-link" href="{% url 'sugar_free' %}">View Sugar-free Drinks</a>
+				<a class="nav-link" href="{% url 'sugar_free' %}">Sugar-free Drinks</a>
           </li>
+			<!--<li class="nav-item">
+
+				<a class="nav-link" href="{% url 'register' %}">Register</a>
+          </li>
+          <li class="nav-item">
+				
+
+				<a class="nav-link" href="{ url 'register' %}">Register</a>
+          </li>
+          <li class="nav-item">
+				<a class="nav-link" href="{ url 'login' %}">Login</a>
+
+          </li> -->
         </ul>
       </div>
     </nav>
