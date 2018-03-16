@@ -42,9 +42,18 @@
 	  <li class="nav-item">
             <a class="nav-link" href="{% url 'register' %}">Sign Up</a>
 		  </li>
+	  {% if not user.is_authenticated %}
 	  <li class="nav-item">
             <a class="nav-link" href="{% url 'login' %}">Log In</a>
 		  </li>
+	  {% endif %}
+
+	  {% if user.is_authenticated %}
+	  <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+		  </li>
+	  {% endif %}
+
 			<li class="nav-item">
 				<a class="nav-link" href="{% url 'sugar_free' %}">Sugar-free Drinks</a>
           </li>
@@ -61,7 +70,6 @@
 				<a class="nav-link" href="{ url 'login' %}">Login</a>
 
           </li> -->
-          
 	  
       </div>
     </nav>
