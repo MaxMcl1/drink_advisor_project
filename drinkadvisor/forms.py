@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from drinkadvisor.models import Category, Page, UserProfile
+from drinkadvisor.models import UserProfile
 
 
 
@@ -19,5 +19,5 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
 
-        fields = ('website', 'picture')
+        fields = ('picture',)
 
