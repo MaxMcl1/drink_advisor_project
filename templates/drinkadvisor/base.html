@@ -39,13 +39,57 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'drinks' %}">Drinks</a>
 		  </li>
+	  <li class="nav-item">
+            <a class="nav-link" href="{% url 'register' %}">Sign Up</a>
+		  </li>
+	  {% if not user.is_authenticated %}
+	  <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Log In</a>
+		  </li>
+	  {% endif %}
+
+	  {% if user.is_authenticated %}
+	  <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+		  </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+		  </li>
+	  {% endif %}
+
 			<li class="nav-item">
 				<a class="nav-link" href="{% url 'sugar_free' %}">Sugar-free Drinks</a>
           </li>
+			<!--<li class="nav-item">
 
-        </ul>
+				<a class="nav-link" href="{% url 'register' %}">Register</a>
+          </li>
+          <li class="nav-item">
+				
+
+				<a class="nav-link" href="{ url 'register' %}">Register</a>
+          </li>
+          <li class="nav-item">
+				<a class="nav-link" href="{ url 'login' %}">Login</a>
+
+          </li> -->
+
+	
+	<form id="searchform" action="{% url 'index' %}" method="get" accept-charset="utf-8">
+      <button class="searchbutton" type="submit">
+        <i class="fa fa-search"></i>
+      </button>
+      <input class="searchfield" id="searchbox" name="q" type="text" placeholder="Search">
+    	</form>
+	
+	
+ 
       </div>
     </nav>
+
+    
+    
+
 
 	{% block content_block %}{% endblock %}
 

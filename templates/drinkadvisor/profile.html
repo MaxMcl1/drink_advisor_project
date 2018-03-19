@@ -1,0 +1,13 @@
+{% extends 'drinkadvisor/base.html' %}
+{% load staticfiles %}
+
+{% block title %} Profile Page {% endblock %}
+
+{% block content_block %}
+
+{% if user.is_authenticated %}
+<img src="{% static "images/drink.jpg" %}" alt="Picture of You" />
+
+{% endif %}
+
+{% endblock %}}

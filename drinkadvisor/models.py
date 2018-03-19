@@ -16,6 +16,7 @@ class UserProfile(models.Model):
     
     
     
+<<<<<<< HEAD
 
 class Drink(models.Model):
     name = models.CharField(max_length=50)
@@ -43,3 +44,12 @@ class Feedback(models.Model):
 
     def __str__(self):
         return self.content
+=======
+class DrinkProfile(models.Model):
+    drink = models.CharField(max_length = 128)
+    picture = models.ImageField(upload_to='profile_images', blank=True)
+
+
+    def __str__(self):
+        return self.drink
+>>>>>>> 719802334cab9336d22ecfcea2d7b421604f4ca8

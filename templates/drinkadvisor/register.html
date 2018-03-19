@@ -1,29 +1,16 @@
-<<<<<<< HEAD
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
-=======
-{% extends 'rango/base.html' %}
+{% extends 'drinkadvisor/base.html' %}
 {% load staticfiles %}
 
 {% block title_block %}
    Register
 {% endblock %}
 
-{% block body_block %}
+{% block content_block %}
     <h1>Register for DrinkAdvisor</h1>
     {% if registered %}
-        Rango says: <strong>thank you for registering!</strong>
+        <strong> Thank You for registering with Drink Advisor</strong>
         <a href="{% url 'index' %}">Return to the homepage.</a><br />
-    {% else %}
-	Rango says: <strong>register here!</strong><br />
+    {% else %}
 	<form id="user_form" method="post" action="{% url 'register' %}"
 	      enctype="multipart/form-data">
 
@@ -32,8 +19,7 @@
 	{{ user_form.as_p }}
 	{{ profile_form.as_p }}
 
-	<input type="submit" name="submit" value="Register" />
+	 <input type="submit" name="submit" value="Register" />
        </form>
        {% endif %}
-{% endblock %}
->>>>>>> f251f991439d2d0d56b40abfff7012d98fc3731c
+{% endblock %}
