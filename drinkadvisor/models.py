@@ -15,3 +15,10 @@ class UserProfile(models.Model):
     
     
     
+class DrinkProfile(models.Model):
+    drink = models.CharField(max_length = 128)
+    picture = models.ImageField(upload_to='profile_images', blank=True)
+
+
+    def __str__(self):
+        return self.drink

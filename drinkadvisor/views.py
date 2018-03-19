@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-from drinkadvisor.forms import UserForm, UserProfileForm
+from drinkadvisor.forms import UserForm, UserProfileForm, DrinkForm
 from django.contrib.auth import authenticate, login
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+
 
 # Create your views here.
 
@@ -36,6 +37,14 @@ def sugar_free(request):
     
 
     response = render(request, 'drinkadvisor/sugar_free.html')
+
+    
+    return response
+
+def profile(request):
+    
+
+    response = render(request, 'drinkadvisor/profile.html')
 
     
     return response
@@ -87,30 +96,76 @@ def user_login(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
 
-        user = authenticate(username=username, password=password)
+        user = authenticate(username=username, password=password)
+
 
         if user:
             if user.is_active:
-                login(request, user)
-                return HttpResponseRedirect(reverse('index'))
+                login(request, user)
+
+                return HttpResponseRedirect(reverse('index'))
+
             else:
                 return HttpResponse("Your Drink Advisor account is disabled.")
         else:
             print("Invalid login details: {0}, {1}".format(username, password))
-            return HttpResponse("Invalid login details supplied.")
+            return HttpResponse("Invalid login details supplied.")
+
     else:
-        return render(request, 'drinkadvisor/login.html', {})
+        return render(request, 'drinkadvisor/login.html', {})
+
         
             
 @login_required
 def restricted(request):
-    return HttpResponse("Since you're logged in, you can see this text!")                
+    return HttpResponse("Since you're logged in, you can see this text!")
+                
                 
             
 @login_required
 def user_logout(request):
     logout(request)
-    return HttpResponseRedirect(reverse('index'))    
+    return HttpResponseRedirect(reverse('index'))
+
+
+def add_drink(request):
+    registered = False
+
+    drink_form = DrinkForm()
+    
+    if request.method == 'POST':
+        drink_form = DrinkForm(data=request.POST)
+
+
+        if drink_form.is_valid():
+            user = request.user
+            drink = drink_form.save(commit = False)
+            drink.user = user
+
+
+            drink.save()
+
+            
+
+            if 'picture' in request.FILES:
+                profile.picture = request.FILES['picture']
+
+                profile.save()
+
+                registered = True
+
+
+        else:
+            print(drink_form.errors)
+
+    else:
+        drink_form = DrinkForm()
         
+
+
+    return render(request, 'drinkadvisor/index.html', {'drink_form' : drink_form, 'registered' : registered,})
+    
+
+
         
         

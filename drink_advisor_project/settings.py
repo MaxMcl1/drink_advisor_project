@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 
 """
 Django settings for drink_advisor_project project.
@@ -129,7 +127,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
->>>>>>> user_authentication
+
 """
 Django settings for drink_advisor_project project.
 
@@ -261,8 +259,7 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
-<<<<<<< HEAD
-=======
+
 
 """
 Django settings for drink_advisor_project project.
@@ -397,4 +394,4 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
 
->>>>>>> user_authentication
+

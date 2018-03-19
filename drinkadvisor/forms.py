@@ -1,6 +1,7 @@
 from django import forms
+from django.db import models
 from django.contrib.auth.models import User
-from drinkadvisor.models import UserProfile
+from drinkadvisor.models import UserProfile, DrinkProfile
 
 
 
@@ -13,11 +14,20 @@ class UserForm(forms.ModelForm):
         fields = ('username', 'email', 'password')
 
 
-
 class UserProfileForm(forms.ModelForm):
 
     class Meta:
         model = UserProfile
 
-        fields = ('picture',)
+        fields = ( 'picture',)
+
+
+
+class DrinkForm(forms.ModelForm):
+
+    class Meta:
+        model = DrinkProfile
+        fields = ('drink', 'picture',)
+
+
 
