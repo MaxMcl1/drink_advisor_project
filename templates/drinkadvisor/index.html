@@ -5,6 +5,7 @@
 {% block content_block %}
 {% if user.is_authenticated %}
     Hello there {{ user.username }}!
+
 {% else %}
    Hello
 {% endif %}
