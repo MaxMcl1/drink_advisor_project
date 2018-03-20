@@ -32,7 +32,7 @@
       <a class="navbar-brand" href="#">DrinkAdvisor</a>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
+          <li class="nav-item">
             <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
@@ -41,6 +41,9 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'drinks' %}">Drinks</a>
 		  </li>
+            <li class="nav-item">
+				<a class="nav-link" href="{% url 'sugar_free' %}">Sugar-free Drinks</a>
+          </li>
 	  
 	  {% if not user.is_authenticated %}
 	  <li class="nav-item">
@@ -61,10 +64,6 @@
 		  </li>
     
 	  {% endif %}
-
-			<li class="nav-item">
-				<a class="nav-link" href="{% url 'sugar_free' %}">Sugar-free Drinks</a>
-          </li>
         </ul>
 			<!--<li class="nav-item">
 
