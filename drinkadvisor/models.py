@@ -21,10 +21,28 @@ class UserProfile(models.Model):
     
     
     
+#class DrinkProfile(models.Model):
+  #  drink_name = models.CharField(max_length = 128, unique=True)
+  #  calories = models.CharField(max_length = 128, unique=True)
+   # sugar = models.CharField(max_length = 128, unique=True)
+  #  picture = models.ImageField(upload_to='profile_images', blank=True)
+
+
+    #def __str__(self):
+       # return self.drink_name 
+
 class DrinkProfile(models.Model):
-    drink = models.CharField(max_length = 128)
+    name = models.CharField(max_length=128, default = "Drink" )
+    calories = models.IntegerField(default=0)
+    sugar = models.IntegerField(default=0)
     picture = models.ImageField(upload_to='profile_images', blank=True)
 
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(DrinkProfile, self).save(*args, **kwargs)
 
+    class Meta:
+        verbose_name_plural = 'drinks'
+    
     def __str__(self):
-        return self.drink
+        return self.name

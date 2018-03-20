@@ -129,43 +129,22 @@ def user_logout(request):
 
 
 def add_drink(request):
-    registered = False
 
-    drink_form = DrinkForm()
-    
+    form = DrinkForm()
+
     if request.method == 'POST':
-        drink_form = DrinkForm(data=request.POST)
+        form = DrinkForm(request.POST)
 
 
-        if drink_form.is_valid():
-            user = request.user
-            drink = drink_form.save(commit = False)
-            drink.user = user
+        if form.is_valid():
+            form.save(commit=True)
 
-
-            drink.save()
-
-            
-
-            if 'picture' in request.FILES:
-                profile.picture = request.FILES['picture']
-
-                profile.save()
-
-                registered = True
-
+            return index(request)
 
         else:
-            print(drink_form.errors)
-
-    else:
-        drink_form = DrinkForm()
+            print(form.errors)
+    return render(request, 'drinkadvisor/add_drink.html', {'form': form})
         
-
-
-    return render(request, 'drinkadvisor/index.html', {'drink_form' : drink_form, 'registered' : registered,})
-    
-
 
         
         

@@ -23,11 +23,24 @@ class UserProfileForm(forms.ModelForm):
 
 
 
+#class DrinkForm(forms.ModelForm):
+
+   # class Meta:
+     #   model = DrinkProfile
+     #   fields = ('drink_name', 'calories', 'sugar', 'picture',)
+
+
+
 class DrinkForm(forms.ModelForm):
+    name = forms.CharField(max_length=128,
+                           help_text="Please enter a drink name.")
+    calories = forms.CharField(max_length=128,
+                           help_text="Please enter the calories")
+    sugar = forms.CharField(max_length=128,
+                           help_text="Please enter the sugar.")
+    
+
 
     class Meta:
         model = DrinkProfile
-        fields = ('drink', 'picture',)
-
-
-
+        fields = ('name','calories','sugar','picture')
