@@ -1,7 +1,30 @@
 {% extends 'drinkadvisor/base.html' %}
 
+{% block title_block %} Drinks {% endblock %}
+
 {% block content_block %}
 
-drinks
 
-{% endblock %}
+<div>
+    {% if user.is_authenticated %}
+    <a href="{% url 'add_drink' %}">Add a New Drink</a>
+    {% endif %}
+</div>
+
+<div>
+    {% if drinks %}
+    <ul>
+        {% for drink in drinks %}
+        <li><a href="{% url 'show_drink' drink.slug %}">{{ drink.name }}</a></li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    There are no drinks currently.
+    {% endif %}
+</div>
+
+
+
+
+
+{% endblock %}}

@@ -1,0 +1,17 @@
+{% extends 'drinkadvisor/base.html' %}
+{% load staticfiles %}
+
+{% block title %} Profile Page {% endblock %}
+
+{% block content_block %}
+
+<div class="container">
+  <h1>Profile</h1>
+  <p> Username: {{ user }}</p>
+  <p> Email: {{ user.email }}</p>
+  <img src ="{{ user.userprofile.picture.url }}" width="240">
+</div>
+
+
+
+{% endblock %}}

@@ -1,0 +1,14 @@
+{% extends 'drinkadvisor/base.html' %}
+{% load staticfiles %}
+
+{% block title %}{{ drink.name }}{% endblock %}
+
+{% block content_block %}
+	{% if drink %}
+		<h1>Drink Name: {{ drink.name }}</h1>
+		<h2>Calories: {{ drink.calories }}</h2>
+		<h3>Sugar: {{ drink.sugar }}</h3>
+	{% else %}
+		The specified drink does not exist!
+	{% endif %}
+{% endblock %}

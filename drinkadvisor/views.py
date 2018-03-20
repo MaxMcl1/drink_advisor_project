@@ -1,5 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
+from drinkadvisor.forms import UserForm, UserProfileForm, DrinkForm
+from django.contrib.auth import authenticate, login, logout
+from django.core.urlresolvers import reverse
+from django.contrib.auth.decorators import login_required
+from drinkadvisor.models import DrinkProfile
+
 
 # Create your views here.
 
@@ -19,10 +25,31 @@ def about(request):
     
     return response
 
+def show_drink(request, drink_name_slug):
+
+    context_dict = {}
+
+    try:
+        drink = DrinkProfile.objects.get(slug=drink_name_slug)
+        context_dict['drink'] = drink
+        
+        #context_dict['calories'] = getattr(drink, "calories")
+
+        #context_dict['sugar'] = getattr(drink, "sugar")
+
+    except DrinkProfile.DoesNotExist:
+        context_dict['drink'] = None
+
+    return render(request, 'drinkadvisor/drink.html', context_dict)
+        
+
 def drinks(request):
+
+    drink_list = DrinkProfile.objects.order_by('name')
+    context_dict = {'drinks': drink_list}
     
 
-    response = render(request, 'drinkadvisor/drinks.html')
+    response = render(request, 'drinkadvisor/drinks.html', context_dict)
 
     
     return response
@@ -31,6 +58,14 @@ def sugar_free(request):
     
 
     response = render(request, 'drinkadvisor/sugar_free.html')
+
+    
+    return response
+
+def profile(request):
+    
+
+    response = render(request, 'drinkadvisor/profile.html')
 
     
     return response
@@ -73,10 +108,64 @@ def register(request):
                   'drinkadvisor/register.html',
                   {'user_form': user_form,
                    'profile_form': profile_form,
-                   'registered': registered})
+                   'registered': registered})
 
-            
-    
+
+def user_login(request):
+    if request.method == 'POST':
         
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(username=username, password=password)
+
+
+        if user:
+            if user.is_active:
+                login(request, user)
+
+                return HttpResponseRedirect(reverse('index'))
+
+            else:
+                return HttpResponse("Your Drink Advisor account is disabled.")
+        else:
+            print("Invalid login details: {0}, {1}".format(username, password))
+            return HttpResponse("Invalid login details supplied.")
+
+    else:
+        return render(request, 'drinkadvisor/login.html', {})
+
+        
+            
+@login_required
+def restricted(request):
+    return HttpResponse("Since you're logged in, you can see this text!")
+                
+                
+            
+@login_required
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('index'))
+
+
+def add_drink(request):
+
+    form = DrinkForm()
+
+    if request.method == 'POST':
+        form = DrinkForm(request.POST)
+
+
+        if form.is_valid():
+            form.save(commit=True)
+
+            return index(request)
+
+        else:
+            print(form.errors)
+    return render(request, 'drinkadvisor/add_drink.html', {'form': form})
+        
+
         
         
