@@ -4,6 +4,9 @@ from drinkadvisor.models import DrinkProfile
 
 # Register your models here.
 
+class DrinkProfileAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug':('name',)}
 
+admin.site.register(DrinkProfile, DrinkProfileAdmin)
 admin.site.register(UserProfile)
-admin.site.register(DrinkProfile)
+

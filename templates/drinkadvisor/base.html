@@ -5,13 +5,15 @@
 
 <html lang="en">
   <head>
-    <meta charset="utf-8">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'drink_advisor_project/base.css' %}">
+      <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="{% static 'images/myfavicon.ico' %}">
 
-    <title> DrinkAdvisor - {% block title %} {% endblock %}</title>
+      <title> DrinkAdvisor - {% block title %} {% endblock %}</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/navbar-top/">
 
     <!-- Bootstrap core CSS -->
@@ -63,6 +65,7 @@
 			<li class="nav-item">
 				<a class="nav-link" href="{% url 'sugar_free' %}">Sugar-free Drinks</a>
           </li>
+        </ul>
 			<!--<li class="nav-item">
 
 				<a class="nav-link" href="{% url 'register' %}">Register</a>
@@ -77,12 +80,11 @@
 
           </li> -->
 
-	
 	<form id="searchform" action="{% url 'index' %}" method="get" accept-charset="utf-8">
-      <button class="searchbutton" type="submit">
+      <input class="searchfield" id="searchbox" name="q" type="text" placeholder="Search">
+      <button class="search_button" type="submit"> Search
         <i class="fa fa-search"></i>
       </button>
-      <input class="searchfield" id="searchbox" name="q" type="text" placeholder="Search">
     	</form>
 	
 	

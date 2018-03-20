@@ -38,6 +38,7 @@ class DrinkForm(forms.ModelForm):
                            help_text="Please enter the calories")
     sugar = forms.CharField(max_length=128,
                            help_text="Please enter the sugar.")
+    slug = forms.CharField(widget=forms.HiddenInput(), required=False)
     
 
 

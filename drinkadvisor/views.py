@@ -1,10 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from drinkadvisor.forms import UserForm, UserProfileForm, DrinkForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import logout
+from drinkadvisor.models import DrinkProfile
 
 
 # Create your views here.
@@ -25,10 +25,31 @@ def about(request):
     
     return response
 
+def show_drink(request, drink_name_slug):
+
+    context_dict = {}
+
+    try:
+        drink = DrinkProfile.objects.get(slug=drink_name_slug)
+        context_dict['drink'] = drink
+        
+        #context_dict['calories'] = getattr(drink, "calories")
+
+        #context_dict['sugar'] = getattr(drink, "sugar")
+
+    except DrinkProfile.DoesNotExist:
+        context_dict['drink'] = None
+
+    return render(request, 'drinkadvisor/drink.html', context_dict)
+        
+
 def drinks(request):
+
+    drink_list = DrinkProfile.objects.order_by('name')
+    context_dict = {'drinks': drink_list}
     
 
-    response = render(request, 'drinkadvisor/drinks.html')
+    response = render(request, 'drinkadvisor/drinks.html', context_dict)
 
     
     return response

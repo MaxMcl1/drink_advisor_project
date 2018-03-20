@@ -32,10 +32,11 @@ class UserProfile(models.Model):
        # return self.drink_name 
 
 class DrinkProfile(models.Model):
-    name = models.CharField(max_length=128, default = "Drink" )
+    name = models.CharField(max_length=128, unique=True)
     calories = models.IntegerField(default=0)
     sugar = models.IntegerField(default=0)
     picture = models.ImageField(upload_to='profile_images', blank=True)
+    slug = models.SlugField(unique=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
