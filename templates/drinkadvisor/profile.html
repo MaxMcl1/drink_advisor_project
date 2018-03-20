@@ -5,9 +5,13 @@
 
 {% block content_block %}
 
-{% if user.is_authenticated %}
-<img src="{% static "images/drink.jpg" %}" alt="Picture of You" />
+<div class="container">
+  <h1>Profile</h1>
+  <p> Username: {{ user }}</p>
+  <p> Email: {{ user.email }}</p>
+  <img src ="{{ user.userprofile.picture.url }}" width="240">
+</div>
 
-{% endif %}
+
 
 {% endblock %}}
