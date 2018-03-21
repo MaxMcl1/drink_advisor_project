@@ -1,18 +1,20 @@
 from django.contrib import admin
-<<<<<<< HEAD
+
 from drinkadvisor.models import UserProfile, Drink, Feedback
-=======
-from drinkadvisor.models import UserProfile
-from drinkadvisor.models import DrinkProfile
->>>>>>> 719802334cab9336d22ecfcea2d7b421604f4ca8
 
 # Register your models here.
 
+class DrinkAdmin(admin.ModelAdmin):
+    list_display = ('name',
+                    'calories',
+                    'caffeine',
+                    'isEnergyDrink',
+                    'isSugarFree',
+                    'date_uploaded',
+                    'picture',
+                    'views')
 
 admin.site.register(UserProfile)
-<<<<<<< HEAD
-admin.site.register(Drink)
+
+admin.site.register(Drink, DrinkAdmin)
 admin.site.register(Feedback)
-=======
-admin.site.register(DrinkProfile)
->>>>>>> 719802334cab9336d22ecfcea2d7b421604f4ca8
