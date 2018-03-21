@@ -56,10 +56,10 @@ def populate():
 
 
     drinks = {
-        "Fanta" : { "calories": 29, "picture": "fanta.jpg", "views":12, "feedback": feedback_1},
-        "CocaCola" : { "calories" : 42, "picture": "coke.jpg", "views":12, "feedback": feedback_3},
-        "CocaCola Zero": { "calories": 0.3, "sugar_free": True, "picture": "coca_cola_zero.jpg", "views":12, },
-        "Powerade Berry": { "calories": 18, "energy": True, "picture": "powerade_berry.jpg", "views":12, "feedback": feedback_2}
+        "Fanta" : { "calories": 29, "picture": "drinks_uploaded/fanta.jpg", "views":12, "feedback": feedback_1},
+        "CocaCola" : { "calories" : 42, "picture": "drinks_uploaded/coke.jpg", "views":12, "feedback": feedback_3},
+        "CocaCola Zero": { "calories": 0.3, "sugar_free": True, "picture": "drinks_uploaded/coca_cola_zero.jpg", "views":12, },
+        "Powerade Berry": { "calories": 18, "energy": True, "picture": "drinks_uploaded/powerade_berry.jpg", "views":12, "feedback": feedback_2}
     }
 
 
