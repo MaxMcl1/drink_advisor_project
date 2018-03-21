@@ -17,6 +17,7 @@ urlpatterns = [
         views.show_drink, name='show_drink'),
     url(r'^edit_profile/$', views.edit_profile, name='edit_profile'),
     url(r'^change_password/$', views.change_password, name='change_password'),
+    url(r'^energy_drinks/', views.energy_drinks, name='energy_drinks'),
 
     
 ]

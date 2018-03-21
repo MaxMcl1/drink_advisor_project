@@ -3,13 +3,18 @@
 {% block title %} Home {% endblock %}
 
 {% block content_block %}
-{% if user.is_authenticated %}
-    Hello there {{ user.username }}!
 
-{% else %}
-   Hello
-{% endif %}
-
-
+<div class="container">
+  <div class="jumbotron">
+    <h1>Welcome to DrinkAdvisor</h1>
+    <p>DrinkAdvisor is a web app designed to raise awareness of the calorie and sugar content in
+    drinks, and to allow users to recommend an alternative to sugary drinks.</p>
+  </div>
+  {% if user.is_authenticated %}
+    <p>Welcome, {{ user.username }}!</p>
+  {% else %}
+    <p>Welcome! </p>
+  {% endif %}
+</div>
 
 {% endblock %}}

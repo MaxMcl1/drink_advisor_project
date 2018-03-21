@@ -33,10 +33,6 @@ def show_drink(request, drink_name_slug):
     try:
         drink = DrinkProfile.objects.get(slug=drink_name_slug)
         context_dict['drink'] = drink
-        
-        #context_dict['calories'] = getattr(drink, "calories")
-
-        #context_dict['sugar'] = getattr(drink, "sugar")
 
     except DrinkProfile.DoesNotExist:
         context_dict['drink'] = None
@@ -55,12 +51,22 @@ def drinks(request):
     
     return response
 
+def energy_drinks(request):
+    drink_list = DrinkProfile.objects.order_by('name')
+    context_dict = {'drinks': drink_list}
+
+    response = render(request, 'drinkadvisor/energy_drinks.html', context_dict)
+
+    return response
+
 def sugar_free(request):
-    
 
-    response = render(request, 'drinkadvisor/sugar_free.html')
+    drink_list = DrinkProfile.objects.order_by('name')
+    context_dict = {'drinks': drink_list}
 
-    
+
+    response = render(request, 'drinkadvisor/sugar_free.html', context_dict)
+
     return response
 
 def profile(request):

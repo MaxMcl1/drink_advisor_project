@@ -29,7 +29,7 @@
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <a class="navbar-brand" href="#">DrinkAdvisor</a>
+      <a class="navbar-brand" href="{% url 'index' %}">DrinkAdvisor</a>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
@@ -44,7 +44,10 @@
             <li class="nav-item">
 				<a class="nav-link" href="{% url 'sugar_free' %}">Sugar-free Drinks</a>
           </li>
-	  
+          <li class="nav-item">
+              <a class="nav-link" href="{% url 'energy_drinks' %}">Energy Drinks</a>
+          </li>
+
 	  {% if not user.is_authenticated %}
 	  <li class="nav-item">
             <a class="nav-link" href="{% url 'login' %}">Log In</a>
@@ -55,29 +58,16 @@
 	  {% endif %}
 
 	  {% if user.is_authenticated %}
-      
+
 	  <li class="nav-item">
             <a class="nav-link" href="{% url 'logout' %}">Logout</a>
 		  </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'profile' %}">Profile</a>
 		  </li>
-    
+
 	  {% endif %}
         </ul>
-			<!--<li class="nav-item">
-
-				<a class="nav-link" href="{% url 'register' %}">Register</a>
-          </li>
-          <li class="nav-item">
-				
-
-				<a class="nav-link" href="{ url 'register' %}">Register</a>
-          </li>
-          <li class="nav-item">
-				<a class="nav-link" href="{ url 'login' %}">Login</a>
-
-          </li> -->
 
 	<form id="searchform" action="{% url 'index' %}" method="get" accept-charset="utf-8">
       <input class="searchfield" id="searchbox" name="q" type="text" placeholder="Search">

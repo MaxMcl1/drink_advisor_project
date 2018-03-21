@@ -7,7 +7,11 @@
 	{% if drink %}
 		<h1>Drink Name: {{ drink.name }}</h1>
 		<h2>Calories: {{ drink.calories }}</h2>
-		<h3>Sugar: {{ drink.sugar }}</h3>
+		{% if not drink.sugar_free %}
+			<h3>Sugar: {{ drink.sugar }}</h3>
+		{% else %}
+			<h3>This drink is sugar free</h3>
+		{% endif %}
 		{% if not drink.picture is None %}
 		<img src ="{{ drink.DrinkProfile.picture.url }}" width="240">
 		{% endif %}
