@@ -2,6 +2,7 @@ from django import forms
 from django.db import models
 from django.contrib.auth.models import User
 from drinkadvisor.models import UserProfile, DrinkProfile
+from django.contrib.auth.forms import UserCreationForm
 
 
 
@@ -23,12 +24,6 @@ class UserProfileForm(forms.ModelForm):
 
 
 
-#class DrinkForm(forms.ModelForm):
-
-   # class Meta:
-     #   model = DrinkProfile
-     #   fields = ('drink_name', 'calories', 'sugar', 'picture',)
-
 
 
 class DrinkForm(forms.ModelForm):
@@ -45,3 +40,12 @@ class DrinkForm(forms.ModelForm):
     class Meta:
         model = DrinkProfile
         fields = ('name','calories','sugar','picture')
+
+class EditProfileForm(UserCreationForm):
+    
+    class Meta:
+        model = User
+        fields = {'username', 'email', 'password'}
+
+
+   

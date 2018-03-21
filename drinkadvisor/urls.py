@@ -15,6 +15,8 @@ urlpatterns = [
     url(r'^add_drink/$', views.add_drink, name='add_drink'),
     url(r'^drink/(?P<drink_name_slug>[\w\-]+)/$',
         views.show_drink, name='show_drink'),
+    url(r'^edit_profile/$', views.edit_profile, name='edit_profile'),
+    url(r'^change_password/$', views.change_password, name='change_password'),
 
     
 ]

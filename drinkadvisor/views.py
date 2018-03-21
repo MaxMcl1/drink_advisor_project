@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-from drinkadvisor.forms import UserForm, UserProfileForm, DrinkForm
-from django.contrib.auth import authenticate, login, logout
+from drinkadvisor.forms import UserForm, UserProfileForm, DrinkForm, EditProfileForm
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
+from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from drinkadvisor.models import DrinkProfile
@@ -166,6 +167,35 @@ def add_drink(request):
             print(form.errors)
     return render(request, 'drinkadvisor/add_drink.html', {'form': form})
         
+def edit_profile(request):
 
+    if request.method == 'POST':
+        form = EditProfileForm(request.POST, instance = request.user)
         
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/drinkadvisor/login')
+        else:
+            return HttpResponseRedirect('/drinkadvisor/edit_profile')
+        
+    else:
+        form = EditProfileForm(instance=request.user)
+        args = {'form':form}
+        return render(request, 'drinkadvisor/edit_profile.html',args)
+
+
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(data = request.POST, user = request.user)
+        
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.user)
+            return HttpResponseRedirect('/drinkadvisor/profile')
+        else:
+            return HttpResponseRedirect('/drinkadvisor/change_password')
+    else:
+        form = PasswordChangeForm(user=request.user)
+        args = {'form':form}
+        return render(request, 'drinkadvisor/change_password.html',args)
         
