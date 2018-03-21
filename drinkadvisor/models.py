@@ -35,6 +35,8 @@ class DrinkProfile(models.Model):
     name = models.CharField(max_length=128, unique=True)
     calories = models.IntegerField(default=0)
     sugar = models.IntegerField(default=0)
+    is_energy_drink = models.BooleanField(default=False, blank=True)
+    sugar_free = models.BooleanField(default=False, blank=True)
     picture = models.ImageField(upload_to='profile_images', blank=True)
     slug = models.SlugField(unique=True)
 

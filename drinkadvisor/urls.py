@@ -7,6 +7,7 @@ urlpatterns = [
     url(r'^about/', views.about, name='about'),
     url(r'^drinks/', views.drinks, name='drinks'),
     url(r'^sugar_free/', views.sugar_free, name='sugar_free'),
+    url(r'^energy_drinks/', views.energy_drinks, name='energy_drinks'),
     url(r'^register/$',views.register, name='register'),
     url(r'^login/$', views.user_login, name='login'),
     url(r'^restricted/', views.restricted, name='restricted'),

@@ -1,12 +1,17 @@
 {% extends 'drinkadvisor/base.html' %}
 {% load staticfiles %}
 
-{% block title_block %}
-    	Add a drink
-{% endblock %}
+{% block title_block %}
 
-{% block content_block %}
+    	Add a drink
 
+{% endblock %}
+
+
+
+{% block content_block %}
+
+	{% if user.is_authenticated %}
 	<h1>Add a drink</h1>
 	<div>
 		<form id="drink_form" method="post" action="{% url 'add_drink' %}">
@@ -22,5 +27,9 @@
 		    <input type="submit" name="submit" value="Create Drink" />
 		</form>
 	 </div>
+	{% else %}
+		<h1>Please log in to add a drink.</h1>
+	{% endif %}
 
-{% endblock %}
+{% endblock %}
+

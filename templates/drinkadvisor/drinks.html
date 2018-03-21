@@ -15,7 +15,11 @@
     {% if drinks %}
     <ul>
         {% for drink in drinks %}
-        <li><a href="{% url 'show_drink' drink.slug %}">{{ drink.name }}</a></li>
+            {% if not drink.is_energy_drink %}
+                {% if not drink.sugar_free %}
+                <li><a href="{% url 'show_drink' drink.slug %}">{{ drink.name }}</a></li>
+                {% endif %}
+            {% endif %}
         {% endfor %}
     </ul>
     {% else %}

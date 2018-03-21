@@ -54,10 +54,22 @@ def drinks(request):
     
     return response
 
-def sugar_free(request):
-    
 
-    response = render(request, 'drinkadvisor/sugar_free.html')
+def energy_drinks(request):
+    drink_list = DrinkProfile.objects.order_by('name')
+    context_dict = {'drinks': drink_list}
+
+    response = render(request, 'drinkadvisor/energy_drinks.html', context_dict)
+
+    return response
+
+def sugar_free(request):
+
+    drink_list = DrinkProfile.objects.order_by('name')
+    context_dict = {'drinks': drink_list}
+
+
+    response = render(request, 'drinkadvisor/sugar_free.html', context_dict)
 
     
     return response

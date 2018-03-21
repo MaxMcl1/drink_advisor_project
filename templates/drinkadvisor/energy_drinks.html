@@ -1,6 +1,6 @@
 {% extends 'drinkadvisor/base.html' %}
 
-{% block title_block %} Sugar Free Drinks {% endblock %}
+{% block title_block %} Energy Drinks {% endblock %}
 
 {% block content_block %}
 
@@ -15,10 +15,8 @@
     {% if drinks %}
     <ul>
         {% for drink in drinks %}
-            {% if not drink.is_energy_drink %}
-                {% if drink.sugar_free %}
+            {% if drink.is_energy_drink %}
                 <li><a href="{% url 'show_drink' drink.slug %}">{{ drink.name }}</a></li>
-                {% endif %}
             {% endif %}
 
         {% endfor %}
