@@ -1,20 +1,67 @@
-#my-div {
-    background-color: #f00;
-    width: 200px;
-    height: 200px;
-}
-a.fill-div {
-    display: block;
-    height: 100%;
+.addr {
+	position:relative;
+	background-color: gray;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
     width: 100%;
-    text-decoration: none;
+	
+	
 }
-.floating-box {
-    display: inline-block;
-    width: 150px;
-    height: 75px;
-    margin: 10px;
-    border: 3px solid #73AD21;
+
+
+.addr,.square:hover {
+	opacity: 0.8;
+}
+
+.content {
+	position: absolute;
+	color: white;
+	width: 90%;
+	height: 90%;
+	padding: 20%;
+}
+
+.square {
+	float: left;
+	position: relative;
+	width: 15%;
+	height: 15%;
+	padding-bottom: 15%;
+	margin: 1.66%;
+	background-color: black;
+	text-align: center;
+	
+}
+
+.square a {
+	position: absolute;
+    width: 100%;
+    height: 100%;
+	top: 0;
+    left: 0;
+	text-decoration: none; /* No underlines on the link */
+	z-index: 10; /* Places the link above everything else in the div */
+	background-color: #FFF; /* Fix to make div clickable in IE */
+	opacity: 0; /* Fix to make div clickable in IE */
+	filter: alpha(opacity=1); /* Fix to make div clickable in IE */
+
+
+.clickr {
+	
+	display: inline;
+	position:relative;
+	background-color: black;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 30%;
+	padding-bottom: 30%:
+
 }
 
 .search_button{
