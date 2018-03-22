@@ -204,4 +204,17 @@ def change_password(request):
         form = PasswordChangeForm(user=request.user)
         args = {'form':form}
         return render(request, 'drinkadvisor/change_password.html',args)
+
+def add_comment(request):
+
+    comment_form = CommentForm()
+
+    if request.method == 'POST':
+        comment_form.save(commit=True)
+
+        return HttpResponseRedirect('/drinkadvisor/drink')
+
+    else:
+        print(form.errors)
+    return render(request, 'drinkadvisor/add_drink.html', {'comment_form': comment_form})
         

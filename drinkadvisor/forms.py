@@ -1,7 +1,7 @@
 from django import forms
 from django.db import models
 from django.contrib.auth.models import User
-from drinkadvisor.models import UserProfile, DrinkProfile
+from drinkadvisor.models import UserProfile, DrinkProfile, CommentProfile
 from django.contrib.auth.forms import UserCreationForm
 
 
@@ -44,6 +44,15 @@ class EditProfileForm(UserCreationForm):
     class Meta:
         model = User
         fields = {'username', 'email', 'password'}
+
+class CommentForm(forms.ModelForm):
+    name = forms.CharField(max_length=500, help_text="Please enter a comment: ")
+    slug = forms.CharField(widget=forms.HiddenInput(), required=False)
+
+    class Meta:
+        model = CommentProfile
+        fields = {'name', }
+    
 
 
    

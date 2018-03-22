@@ -5,6 +5,11 @@
 
 {% block content_block %}
 	{% if drink %}
+     <form action="{% url 'drinks' %} method = "post">
+	  {% csrf_token %}
+      {{comment_form.as_p}}
+      <input type="submit" name="submit" value="Add Comment"/>
+     </form>
 		<h1>Drink Name: {{ drink.name }}</h1>
 		<h2>Calories: {{ drink.calories }}</h2>
 		{% if not drink.sugar_free %}
