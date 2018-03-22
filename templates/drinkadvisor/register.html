@@ -30,6 +30,13 @@
 
 
 	 <input type="submit" name="submit" value="Register" />
+     <input type="button" onclick="myFunction()" value="Reset">
+
+    <script>
+        function myFunction(){
+            document.getElementById("user_form").reset();
+        }
+    </script>
        </form>
        {% endif %}
 

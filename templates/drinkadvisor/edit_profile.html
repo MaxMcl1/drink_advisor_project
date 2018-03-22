@@ -6,10 +6,17 @@
 {% block content_block %}
 
 <div class="container">
-  <form method="post">
+  <form id="edit_profile" method="post">
       {% csrf_token %}
       {{form.as_p}}
       <button type="submit">Submit</button>
+      <input type="button" onclick="myFunction()" value="Reset">
+
+    <script>
+        function myFunction(){
+            document.getElementById("edit_profile").reset();
+        }
+    </script>
   </form>
 </div>
 
