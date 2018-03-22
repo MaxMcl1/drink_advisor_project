@@ -8,6 +8,7 @@
      <form action="{% url 'drinks' %} method = "post">
 	  {% csrf_token %}
       {{comment_form.as_p}}
+      <input type="text"/>
       <input type="submit" name="submit" value="Add Comment"/>
      </form>
 		<h1>Drink Name: {{ drink.name }}</h1>
