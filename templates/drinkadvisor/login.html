@@ -1,12 +1,14 @@
 {% extends 'drinkadvisor/base.html' %}
 {% load staticfiles %}
 
+
 {% block title_block %}
     Login
 {% endblock %}
 
 {% block content_block %}
 <h1>Login to Drink Advisor</h1>
+
 <form id="login_form" method="post" action="{% url 'login' %}">
 
     {% csrf_token %}
@@ -15,5 +17,13 @@
     Password: <input type="password" name="password" value="" size="50" />
     <br />
     <input type="submit" value="submit" />
+    <input type="button" onclick="myFunction()" value="Reset">
+
+    <script>
+        function myFunction(){
+            document.getElementById("login_form").reset();
+        }
+    </script>
 </form>
-{% endblock %}
+
+{% endblock %}

@@ -1,25 +1,36 @@
-{% extends 'drinkadvisor/base.html' %}
-{% load staticfiles %}
+{% extends 'drinkadvisor/base.html' %}
+
+{% load staticfiles %}
+
 
 {% block title_block %}
    Register
-{% endblock %}
+{% endblock %}
+
 
 {% block content_block %}
-    <h1>Register for DrinkAdvisor</h1>
-    {% if registered %}
+    <h1>Register for DrinkAdvisor</h1>
+
+    {% if registered %}
+
         <strong> Thank You for registering with Drink Advisor</strong>
-        <a href="{% url 'index' %}">Return to the homepage.</a><br />
+        <br>
+        <a href="{% url 'login' %}">Click here to log in</a><br />
+
     {% else %}
 	<form id="user_form" method="post" action="{% url 'register' %}"
-	      enctype="multipart/form-data">
+	      enctype="multipart/form-data">
+
 
 	{% csrf_token %}
 	
-	{{ user_form.as_p }}
-	{{ profile_form.as_p }}
+	{{ user_form.as_p }}
+
+	{{ profile_form.as_p }}
+
 
 	 <input type="submit" name="submit" value="Register" />
        </form>
-       {% endif %}
-{% endblock %}
+       {% endif %}
+
+{% endblock %}
