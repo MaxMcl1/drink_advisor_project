@@ -12,8 +12,12 @@ from drinkadvisor.forms import CommentForm
 
 def index(request):
 
+    comment_list = Comment.objects.order_by('-date')[:5]
 
-    response = render(request, 'drinkadvisor/index.html')
+    context_dict = {'comments': comment_list}
+
+
+    response = render(request, 'drinkadvisor/index.html', context=context_dict)
 
 
     return response

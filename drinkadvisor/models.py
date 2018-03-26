@@ -39,6 +39,9 @@ class Comment(models.Model):
     comment = models.CharField(max_length=128)
     date = models.DateTimeField(auto_now = True)
 
+    class Meta:
+        verbose_name_plural = 'comments'
+
     def __str__(self):
         return self.comment
 

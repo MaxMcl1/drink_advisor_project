@@ -11,9 +11,21 @@
     drinks, and to allow users to recommend an alternative to sugary drinks.</p>
   </div>
   {% if user.is_authenticated %}
-    <p>Welcome, {{ user.username }}!</p>
+    <p>Welcome, {{ user.username }}! Here are the most recent comments on drinks: </p>
   {% else %}
-    <p>Welcome! </p>
+    <p>Welcome! Here are the most recent comments on drinks: </p>
+  {% endif %}
+
+  {% if comments %}
+        {% for comment in comments %}
+        <div class="jumbotron">
+        <p>Posted to: {{ comment.drink }}</p>
+        <div class="container">
+            <p>{{ comment.comment }}</p>
+        </div>
+        <p>On {{ comment.date }}</p>
+        </div>
+        {% endfor %}
   {% endif %}
 </div>
 
