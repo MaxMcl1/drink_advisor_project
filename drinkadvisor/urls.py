@@ -18,6 +18,8 @@ urlpatterns = [
     url(r'^edit_profile/$', views.edit_profile, name='edit_profile'),
     url(r'^change_password/$', views.change_password, name='change_password'),
     url(r'^energy_drinks/', views.energy_drinks, name='energy_drinks'),
+    url(r'^drink/(?P<drink_name_slug>[\w\-]+)/add_comment/$',
+        views.add_comment, name='add_comment'),
 
-    
+
 ]

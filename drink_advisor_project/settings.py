@@ -19,6 +19,7 @@ STATIC_DIR = os.path.join(BASE_DIR, 'static')
 MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 
 
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
@@ -28,7 +29,7 @@ SECRET_KEY = '5p15$6g)et_$l&f%idnkk0@8elozk@2uz$+_-#&gc+bj=9yhs-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['2137949m.pythonanywhere.com']
 
 
 # Application definition
@@ -124,6 +125,7 @@ USE_TZ = True
 STATICFILES_DIRS = [STATIC_DIR, ]
 
 STATIC_URL = '/static/'
+STATIC_ROOT = "/home/2137949m/drink_advisor_project/static"
 
 # Media variables
 
@@ -158,10 +160,6 @@ MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '5p15$6g)et_$l&f%idnkk0@8elozk@2uz$+_-#&gc+bj=9yhs-'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
 
 
 # Application definition

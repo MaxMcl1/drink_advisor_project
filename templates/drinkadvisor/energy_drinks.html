@@ -5,22 +5,26 @@
 {% block content_block %}
 
 
-<div>
+<div class="container">
     {% if user.is_authenticated %}
-    <a href="{% url 'add_drink' %}">Add a New Drink</a>
+    <div>
+    <a class=addr href="{% url 'add_drink' %}">Add a New Drink</a>
+    </div>
     {% endif %}
-</div>
-
-<div>
+    <br>
+    <br>
     {% if drinks %}
-    <ul>
+
         {% for drink in drinks %}
             {% if drink.is_energy_drink %}
-                <li><a href="{% url 'show_drink' drink.slug %}">{{ drink.name }}</a></li>
+            <div class="square">
+                <a href="{% url 'show_drink' drink.slug %}"></a>
+                <div class="content">
+                <h5>{{ drink.name }}</h5>
+                </div>
+            </div>
             {% endif %}
-
         {% endfor %}
-    </ul>
     {% else %}
     There are no drinks currently.
     {% endif %}

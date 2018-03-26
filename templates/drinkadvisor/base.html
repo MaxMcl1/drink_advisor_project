@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 {% load staticfiles %}
 
@@ -24,7 +24,6 @@
   </head>
 
   <body>
-
     <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse mb-4">
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -34,9 +33,6 @@
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
             <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'about' %}">About</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'drinks' %}">Drinks</a>
@@ -67,6 +63,9 @@
 		  </li>
 
 	  {% endif %}
+	  <li class="nav-item">
+            <a class="nav-link" href="{% url 'about' %}">About</a>
+          </li>
         </ul>
 
 	<form id="searchform" action="{% url 'index' %}" method="get" accept-charset="utf-8">
@@ -75,14 +74,14 @@
         <i class="fa fa-search"></i>
       </button>
     	</form>
-	
-	
- 
+
+
+
       </div>
     </nav>
 
-    
-    
+
+
 
 
 	{% block content_block %}{% endblock %}
@@ -105,5 +104,7 @@
     <script src="http://v4-alpha.getbootstrap.com/dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="http://v4-alpha.getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+
   </body>
+
 </html>

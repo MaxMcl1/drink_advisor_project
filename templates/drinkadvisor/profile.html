@@ -6,12 +6,17 @@
 {% block content_block %}
 
 <div class="container">
-  <h1>Profile</h1>
+  <h1>Your Profile</h1>
+  <br>
+  <br>
   <p> Username: {{ user }}</p>
+  <br>
   <p> Email: {{ user.email }}</p>
+  <br>
   {% if user.userprofile.picture %}
   <img src ="{{ user.userprofile.picture.url }}" width="240">
   {% endif %}
+  <br>
   <a href = "{% url 'edit_profile' %}"> Edit Profile</a>
 </div>
 

@@ -5,25 +5,25 @@ from django.contrib.auth import authenticate, login, logout, update_session_auth
 from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
-from drinkadvisor.models import DrinkProfile
-
+from drinkadvisor.models import DrinkProfile, Comment
+from drinkadvisor.forms import CommentForm
 
 # Create your views here.
 
 def index(request):
-    
+
 
     response = render(request, 'drinkadvisor/index.html')
 
-    
+
     return response
 
 def about(request):
-    
+
 
     response = render(request, 'drinkadvisor/about.html')
 
-    
+
     return response
 
 def show_drink(request, drink_name_slug):
@@ -33,22 +33,27 @@ def show_drink(request, drink_name_slug):
     try:
         drink = DrinkProfile.objects.get(slug=drink_name_slug)
         context_dict['drink'] = drink
+        comments = Comment.objects.filter(drink = drink)
+        comments = comments.order_by('-date')[:5]
+
+        context_dict['comments'] = comments
 
     except DrinkProfile.DoesNotExist:
         context_dict['drink'] = None
+        context_dict['comments'] = None
 
     return render(request, 'drinkadvisor/drink.html', context_dict)
-        
+
 
 def drinks(request):
 
     drink_list = DrinkProfile.objects.order_by('name')
     context_dict = {'drinks': drink_list}
-    
+
 
     response = render(request, 'drinkadvisor/drinks.html', context_dict)
 
-    
+
     return response
 
 def energy_drinks(request):
@@ -70,11 +75,11 @@ def sugar_free(request):
     return response
 
 def profile(request):
-    
+
 
     response = render(request, 'drinkadvisor/profile.html')
 
-    
+
     return response
 
 def register(request):
@@ -120,7 +125,7 @@ def register(request):
 
 def user_login(request):
     if request.method == 'POST':
-        
+
         username = request.POST.get('username')
         password = request.POST.get('password')
 
@@ -142,14 +147,14 @@ def user_login(request):
     else:
         return render(request, 'drinkadvisor/login.html', {})
 
-        
-            
+
+
 @login_required
 def restricted(request):
     return HttpResponse("Since you're logged in, you can see this text!")
-                
-                
-            
+
+
+
 @login_required
 def user_logout(request):
     logout(request)
@@ -172,18 +177,18 @@ def add_drink(request):
         else:
             print(form.errors)
     return render(request, 'drinkadvisor/add_drink.html', {'form': form})
-        
+
 def edit_profile(request):
 
     if request.method == 'POST':
         form = EditProfileForm(request.POST, instance = request.user)
-        
+
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/drinkadvisor/login')
         else:
             return HttpResponseRedirect('/drinkadvisor/edit_profile')
-        
+
     else:
         form = EditProfileForm(instance=request.user)
         args = {'form':form}
@@ -193,7 +198,7 @@ def edit_profile(request):
 def change_password(request):
     if request.method == 'POST':
         form = PasswordChangeForm(data = request.POST, user = request.user)
-        
+
         if form.is_valid():
             form.save()
             update_session_auth_hash(request, form.user)
@@ -205,16 +210,26 @@ def change_password(request):
         args = {'form':form}
         return render(request, 'drinkadvisor/change_password.html',args)
 
-def add_comment(request):
+def add_comment(request, drink_name_slug):
+    try:
+        drink = DrinkProfile.objects.get(slug=drink_name_slug)
+    except DrinkProfile.DoesNotExist:
+        drink = None
 
-    comment_form = CommentForm()
 
+    form = CommentForm()
     if request.method == 'POST':
-        comment_form.save(commit=True)
+        form = CommentForm(data=request.POST)
+        if drink:
+            comment = form.save(commit=False)
+            comment.drink = drink
+            comment.save()
+            return show_drink(request, drink_name_slug)
+        else:
+            print(form.errors)
 
-        return HttpResponseRedirect('/drinkadvisor/drink')
+    context_dict = {'form':form, 'drink':drink}
 
-    else:
-        print(form.errors)
-    return render(request, 'drinkadvisor/add_drink.html', {'comment_form': comment_form})
-        
+    return render(request, 'drinkadvisor/add_comment.html', context_dict)
+
+

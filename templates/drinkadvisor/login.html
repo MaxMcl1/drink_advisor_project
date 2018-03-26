@@ -7,16 +7,21 @@
 {% endblock %}
 
 {% block content_block %}
+<div class="container">
 <h1>Login to Drink Advisor</h1>
+<br>
+<br>
 
 <form id="login_form" method="post" action="{% url 'login' %}">
 
     {% csrf_token %}
     Username: <input type="text" name="username" value="" size="50" />
-    <br />
+    <br>
+    <br>
     Password: <input type="password" name="password" value="" size="50" />
-    <br />
-    <input type="submit" value="submit" />
+    <br>
+    <br>
+    <input type="submit" value="Submit" />
     <input type="button" onclick="myFunction()" value="Reset">
 
     <script>
@@ -25,5 +30,6 @@
         }
     </script>
 </form>
+</div>
 
 {% endblock %}

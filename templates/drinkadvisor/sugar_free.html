@@ -4,32 +4,32 @@
 
 {% block content_block %}
 
-<div>
+<div class="container" >
     {% if user.is_authenticated %}
-    <a href="{% url 'add_drink' %}">Add a New Drink</a>
+    <div>
+    <a class=addr href="{% url 'add_drink' %}">Add a New Drink</a>
+    </div>
     {% endif %}
-</div>
-
-<div>
+	<br>
+	<br>
     {% if drinks %}
-
         {% for drink in drinks %}
             {% if not drink.is_energy_drink %}
                 {% if drink.sugar_free %}
+				<div class="square">
+					<a href="{% url 'show_drink' drink.slug %}"></a>
+					<div class=content>
+					<h5>{{ drink.name }}</h5>
+					</div>
+				</div>
 
-                <div ><a href="{% url 'show_drink' drink.slug %}" style="display:inline-block;height:100px;width:100px;color:black" >{{ drink.name }}</a></div>
                 {% endif %}
             {% endif %}
-
         {% endfor %}
-
     {% else %}
     There are no drinks currently.
     {% endif %}
 </div>
-
-
-
 
 
 {% endblock %}}}

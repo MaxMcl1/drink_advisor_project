@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 from django.db.models.signals import post_save
+from datetime import datetime
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
@@ -33,18 +34,13 @@ class DrinkProfile(models.Model):
     def __str__(self):
         return self.name
 
-class CommentProfile(models.Model):
-    name = models.CharField(max_length=500, unique=True)
-    slug = models.SlugField(unique=True)
-
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
-        super(CommentProfile, self).save(*args, **kwargs)
-
-    class Meta:
-        verbose_name_plural = 'comments'
+class Comment(models.Model):
+    drink = models.ForeignKey(DrinkProfile)
+    comment = models.CharField(max_length=128)
+    date = models.DateTimeField(auto_now = True)
 
     def __str__(self):
-        return self.name
+        return self.comment
 
-    
+
+

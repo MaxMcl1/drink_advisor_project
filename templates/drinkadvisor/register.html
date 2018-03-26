@@ -9,7 +9,10 @@
 
 
 {% block content_block %}
+<div class="container">
     <h1>Register for DrinkAdvisor</h1>
+    <br>
+    <br>
 
     {% if registered %}
 
@@ -23,14 +26,14 @@
 
 
 	{% csrf_token %}
-	
+
 	{{ user_form.as_p }}
 
 	{{ profile_form.as_p }}
 
 
 	 <input type="submit" name="submit" value="Register" />
-     <input type="button" onclick="myFunction()" value="Reset">
+     <input type="button" onclick="myFunction()" value="Clear All">
 
     <script>
         function myFunction(){
@@ -39,5 +42,6 @@
     </script>
        </form>
        {% endif %}
+</div>
 
 {% endblock %}
