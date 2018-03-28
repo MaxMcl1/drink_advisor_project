@@ -77,7 +77,7 @@ class ViewsTests(TestCase):
             # Retrieve comments for that drink
             comments = Comment.objects.filter(drink=drink)
 
-            # Check comments are displayed and they have a comment and a date
+            # Check comments are displayed and they have a comment
             for comment in comments:
                 self.assertIn(comment.comment, response.content.decode('ascii'))
-                self.assertIn(comment.date, response.content.decode('ascii'))
+               
