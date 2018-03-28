@@ -78,6 +78,7 @@ def sugar_free(request):
 
     return response
 
+@login_required
 def profile(request):
 
 
@@ -164,7 +165,7 @@ def user_logout(request):
     logout(request)
     return HttpResponseRedirect(reverse('index'))
 
-
+@login_required
 def add_drink(request):
 
     form = DrinkForm()
@@ -182,6 +183,7 @@ def add_drink(request):
             print(form.errors)
     return render(request, 'drinkadvisor/add_drink.html', {'form': form})
 
+@login_required
 def edit_profile(request):
 
     if request.method == 'POST':
@@ -198,7 +200,7 @@ def edit_profile(request):
         args = {'form':form}
         return render(request, 'drinkadvisor/edit_profile.html',args)
 
-
+@login_required
 def change_password(request):
     if request.method == 'POST':
         form = PasswordChangeForm(data = request.POST, user = request.user)
@@ -214,6 +216,7 @@ def change_password(request):
         args = {'form':form}
         return render(request, 'drinkadvisor/change_password.html',args)
 
+@login_required
 def add_comment(request, drink_name_slug):
     try:
         drink = DrinkProfile.objects.get(slug=drink_name_slug)
