@@ -6,7 +6,6 @@ from datetime import datetime
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
-
     website = models.URLField(blank=True)
     picture = models.ImageField(upload_to='profile_images', blank=True)
 
@@ -38,6 +37,7 @@ class Comment(models.Model):
     drink = models.ForeignKey(DrinkProfile)
     comment = models.CharField(max_length=128)
     date = models.DateTimeField(auto_now = True)
+
 
     class Meta:
         verbose_name_plural = 'comments'
