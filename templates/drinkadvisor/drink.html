@@ -18,8 +18,8 @@
 			<h3>This drink is sugar free</h3>
 			<br>
 		{% endif %}
-		{% if drink.drinkprofile.picture %}
-		<img src ="{{ drink.drinkprofile.picture.url }}" width="240">
+		{% if drink.picture %}
+		<img src ="{{ MEDIA_URL }}{{ drink.picture }}" %}" width="240">
 		{% endif %}
 
         {% if user.is_authenticated %}
